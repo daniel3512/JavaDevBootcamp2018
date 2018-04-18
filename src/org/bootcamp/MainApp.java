@@ -1,8 +1,14 @@
 package org.bootcamp;
 
-import com.sun.org.apache.bcel.internal.generic.FieldOrMethod;
-
-import java.text.Normalizer;
+import org.bootcamp.calculate.InsurancePolicyCalculator;
+import org.bootcamp.formula.BusBasicFormula;
+import org.bootcamp.formula.CarBasicFormula;
+import org.bootcamp.formula.Formula;
+import org.bootcamp.formula.TipperBasicFormula;
+import org.bootcamp.vehicle.Bus;
+import org.bootcamp.vehicle.Car;
+import org.bootcamp.vehicle.Tipper;
+import org.bootcamp.vehicle.Vehicle;
 
 public class MainApp {
 
