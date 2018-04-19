@@ -1,10 +1,6 @@
 package org.bootcamp;
 
 import org.bootcamp.calculate.InsurancePolicyCalculator;
-import org.bootcamp.formula.BusBasicFormula;
-import org.bootcamp.formula.CarBasicFormula;
-import org.bootcamp.formula.Formula;
-import org.bootcamp.formula.TipperBasicFormula;
 import org.bootcamp.vehicle.Bus;
 import org.bootcamp.vehicle.Car;
 import org.bootcamp.vehicle.Tipper;
@@ -18,10 +14,6 @@ public class MainApp {
         final Vehicle petersTipper = new Tipper(6,80000,false,15);
 
         final InsurancePolicyCalculator calculator  = InsurancePolicyCalculator.INSTANCE;
-
-        final Formula carBasicFormula = new CarBasicFormula();
-        final Formula busBasicFormula = new BusBasicFormula();
-        final Formula tipperBasicFormula = new TipperBasicFormula();
 
         final int joesInsurancePolicyCost = calculator.calculate(joesCar,carBasicFormula);
 
