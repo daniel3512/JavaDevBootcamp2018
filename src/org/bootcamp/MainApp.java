@@ -1,29 +1,25 @@
 package org.bootcamp;
 
-import org.bootcamp.calculate.InsurancePolicyCalculator;
-import org.bootcamp.vehicle.Bus;
-import org.bootcamp.vehicle.Car;
-import org.bootcamp.vehicle.Tipper;
-import org.bootcamp.vehicle.Vehicle;
+import org.bootcamp.service.InsuranceCalculationResult;
+import org.bootcamp.service.InsuranceCalculatorService;
+
+import java.util.List;
+import java.util.Locale;
 
 public class MainApp {
 
+    private static final String OUTPUT_FORMAT = "Vehicle with id %s has total cost %d ";
+
     public static void main(String[] args) {
-        final Vehicle joesCar = new Car(5,200,true,"auto");
-        final Vehicle stevesBus = new Bus(3,100000,true,31);
-        final Vehicle petersTipper = new Tipper(6,80000,false,15);
 
-        final InsurancePolicyCalculator calculator  = InsurancePolicyCalculator.INSTANCE;
+        if (args.length >= 1) {
+            final InsuranceCalculatorService service = new InsuranceCalculatorService(args[0]);
+            final List<InsuranceCalculationResult> resultList = service.calculateAll();
 
-        final int joesInsurancePolicyCost = calculator.calculate(joesCar,carBasicFormula);
-
-        final int stevesInsurancePolicyCost = calculator.calculate(stevesBus, busBasicFormula);
-
-        final int petersInsurancePolicyCost = calculator.calculate(petersTipper, tipperBasicFormula);
-
-
-        System.out.println("Joe's Policy : "+ joesInsurancePolicyCost);
-        System.out.println("Steve's Policy : "+ stevesInsurancePolicyCost);
-        System.out.println("Peter's Policy : "+ petersInsurancePolicyCost);
+            for(InsuranceCalculationResult result: resultList){
+                final String output = String.format(OUTPUT_FORMAT, result.getId(), result.getCost());
+                System.out.println(output);
+            }
+        }
     }
 }
