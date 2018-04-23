@@ -4,7 +4,6 @@ import org.bootcamp.service.InsuranceCalculationResult;
 import org.bootcamp.service.InsuranceCalculatorService;
 
 import java.util.List;
-import java.util.Locale;
 
 public class MainApp {
 

@@ -16,7 +16,8 @@ import java.util.List;
 public final class InsuranceCalculatorService {
     private String filePath;
 
-    public InsuranceCalculatorService(String filePath){
+    public InsuranceCalculatorService(String filePath)
+    {
         this.filePath = filePath;
     }
 
@@ -45,21 +46,21 @@ public final class InsuranceCalculatorService {
         return resultList;
     }
 
-    private static Vehicle getVehicle(String vehicleName, int age, long numberOfmiles, boolean isDiesel){
+    private static Vehicle getVehicle(String vehicleName, int age, long numberOfMiles, boolean isDiesel){
         String carClassName = Car.class.getSimpleName().toUpperCase();
         String busClassName = Bus.class.getSimpleName().toUpperCase();
         String tipperClassName = Tipper.class.getSimpleName().toUpperCase();
 
         if(vehicleName.equals(carClassName)){
-            return new Car();
+            return new Car(age, numberOfMiles, isDiesel);
         }
 
         if(vehicleName.equals(busClassName)){
-            return new Bus();
+            return new Bus(age, numberOfMiles, isDiesel);
         }
 
         if(vehicleName.equals(tipperClassName)){
-            return new Tipper();
+            return new Tipper(age, numberOfMiles, isDiesel);
         }
 
         return null;

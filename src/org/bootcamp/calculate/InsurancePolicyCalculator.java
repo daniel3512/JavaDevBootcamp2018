@@ -11,7 +11,8 @@ public final class InsurancePolicyCalculator {
 
     }
 
-    public int calculate(Vehicle vehicle, Formula formula){
+    public int calculate(Vehicle vehicle, Formula formula)
+    {
         return formula.calculate(vehicle);
     }
 

@@ -27,7 +27,8 @@ public final class VehicleInfoPlainFileDao implements VehicleDao{
     private final String filePath;
     private  List<VehicleInfo> vehicleInfos;
 
-    public VehicleInfoPlainFileDao(String filePath) {
+    public VehicleInfoPlainFileDao(String filePath)
+    {
         this.filePath = filePath;
     }
 
