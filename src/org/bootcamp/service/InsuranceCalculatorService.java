@@ -25,14 +25,14 @@ public final class InsuranceCalculatorService {
         final InsurancePolicyCalculator calculator = InsurancePolicyCalculator.INSTANCE;
         final VehicleInfoPlainFileDao vehicleInfo = new VehicleInfoPlainFileDao(filePath);
         final List<VehicleInfo> vehicleInfoList = vehicleInfo.getAllVehicles();
-        List<InsuranceCalculationResult> resultList = new ArrayList<InsuranceCalculationResult>();
+        final List<InsuranceCalculationResult> resultList = new ArrayList<InsuranceCalculationResult>();
 
         if (vehicleInfoList.isEmpty()) {
             return Collections.emptyList();
         } else {
             for (VehicleInfo info : vehicleInfoList) {
 
-                final Vehicle vehicle = getVehicle(info.getVehicleTypeName(), info.getAge(),info.getNumberOfMiles(), info.isDiesel());
+                final Vehicle vehicle = ConversionUtils.getVehicle(info.getVehicleTypeName(), info.getAge(),info.getNumberOfMiles(), info.isDiesel());
                 final Formula formula = Formula.valueOf(info.getVehicleTypeFormula());
                 final int totalCost = calculator.calculate(vehicle, formula);
                 final InsuranceCalculationResult insuranceCalculationResult = new InsuranceCalculationResult(info.getId(),totalCost);
@@ -44,25 +44,5 @@ public final class InsuranceCalculatorService {
         }
 
         return resultList;
-    }
-
-    private static Vehicle getVehicle(String vehicleName, int age, long numberOfMiles, boolean isDiesel){
-        String carClassName = Car.class.getSimpleName().toUpperCase();
-        String busClassName = Bus.class.getSimpleName().toUpperCase();
-        String tipperClassName = Tipper.class.getSimpleName().toUpperCase();
-
-        if(vehicleName.equals(carClassName)){
-            return new Car(age, numberOfMiles, isDiesel);
-        }
-
-        if(vehicleName.equals(busClassName)){
-            return new Bus(age, numberOfMiles, isDiesel);
-        }
-
-        if(vehicleName.equals(tipperClassName)){
-            return new Tipper(age, numberOfMiles, isDiesel);
-        }
-
-        return null;
     }
 }
